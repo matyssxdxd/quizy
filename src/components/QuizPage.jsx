@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { calculateSimilarity } from "../utils/similarityUtils";
+import { calculateSimilarity } from "../utils/similarityUtils.jsx";
 
 function QuizPage({ questions }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
