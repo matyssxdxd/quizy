@@ -8,19 +8,22 @@ function QuizPage({ questions }) {
   const [similarity, setSimilarity] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [answered, setAnswered] = useState(false);
+  const [questionKey, setQuestionKey] = useState(0);
 
   // Function to get a random question
   const getRandomQuestion = () => {
     if (questions.length === 0) return;
-
+    
     const randomIndex = Math.floor(Math.random() * questions.length);
     setCurrentQuestion(questions[randomIndex]);
-    setUserAnswer("");
-    setFeedback("");
+    setUserAnswer('');
+    setFeedback('');
     setSimilarity(null);
     setAnswered(false);
     setQuizStarted(true);
+    setQuestionKey(prevKey => prevKey + 1); // Add this line
   };
+  
 
   // Function to check the answer
   const checkAnswer = () => {
@@ -67,7 +70,7 @@ function QuizPage({ questions }) {
           </button>
         </div>
       ) : (
-        <div className="question-card">
+        <div className="question-card" key={questionKey}>
           <h3>{currentQuestion.question}</h3>
           <textarea
             value={userAnswer}
